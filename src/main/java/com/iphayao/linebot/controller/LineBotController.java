@@ -34,7 +34,6 @@ public class LineBotController {
     @Autowired
     private LineMessagingClient lineMessagingClient;
 
-
     @EventMapping //รับข้อความ
     public void handleTextMessage(MessageEvent<TextMessageContent> event) throws IOException {
         handleTextContent(event.getReplyToken(), event, event.getMessage());
@@ -68,12 +67,6 @@ public class LineBotController {
                 RichMenuHelper.createRichMenu(lineMessagingClient, pathConfigFlex, pathImageFlex, userId);
                 break;
             }
-            case "Flex Back": {
-
-                RichMenuHelper.deleteRichMenu(lineMessagingClient, userId);
-                break;
-            }
-
             case "Flex Restaurant": {
                 this.reply(replyToken, new RestaurantFlexMessageSupplier().get());
                 break;
